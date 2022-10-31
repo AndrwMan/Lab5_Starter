@@ -6,6 +6,7 @@ function init() {
   //handle inital case no sudio selected
   const jsConfetti = new JSConfetti();
   let audio;
+  console.log(audio)
   //audio[0].src = document.getElementsByTagName("audio")[0].src; 
   const dropdown = document.getElementById("horn-select")
   dropdown.addEventListener('change', function(event) {
@@ -20,20 +21,23 @@ function init() {
 
   const playBtn = document.getElementsByTagName("button");
   playBtn[0].addEventListener('click', function() {
-    audio[0].play();
-    if(audio[0].src.includes('assets/audio/party-horn.mp3')) {
-      jsConfetti.addConfetti();
+    if(audio != undefined) { 
+      audio[0].play();
+      if(audio[0].src.includes('assets/audio/party-horn.mp3')) {
+        jsConfetti.addConfetti();
+      }
     }
   }) 
 
   const volSlider = document.getElementById("volume");
   volSlider.addEventListener('input', function(event) {
     const volIcon = document.getElementsByTagName("img");
+    console.log(`${event.target.value}`)
+    if(audio != undefined) { audio[0].volume = `${event.target.value}`/100};
     if( `${event.target.value}` == 0) {
       //get second image tag element in html
       volIcon[1].src = 'assets/icons/volume-level-0.svg';
     } else if ( `${event.target.value}` > 0 && `${event.target.value}` < 33) {
-      console.log(event.target.value);
       volIcon[1].src = 'assets/icons/volume-level-1.svg';
     }
     else if ( `${event.target.value}` >= 33 && `${event.target.value}` < 67) {
