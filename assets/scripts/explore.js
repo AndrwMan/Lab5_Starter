@@ -3,5 +3,7 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-  // TODO
+  const synth = window.speechSynthesis;
+
+  
 }
